@@ -1,0 +1,260 @@
+<html>   
+<head>
+<style>
+body{
+    background:
+    linear-gradient(to right, #0f1398, #570f51  );
+}
+
+.wrapper{
+    width: 70%;
+    margin: auto;
+    text-align: center;
+}
+
+.btn {
+    display: grid;
+    width: 50%;
+    color: rgb(18, 2, 2);
+    padding: 10px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin: auto;
+    
+  }
+  
+  .btn:hover {
+   
+    color: rgb(88, 100, 121);
+  }
+
+h1{
+    margin: 20px;
+    font-size: 5rem;
+    color: rgb(208,214,218);
+}
+
+.dice{
+    margin: 100px 200px;
+    text-align: center;
+    display: inline-block;
+    width: 20%;
+    height: 10%;
+    align-content: center;
+}
+
+
+p{
+    font-size: 2.5rem;
+    color: rgb(208,214,218);
+    margin: 0px 50px;
+    text-align: center;
+    display: inline-block;
+}
+
+.player{
+    margin: 100px 200px;  
+   
+}
+
+
+.img{
+    width:200px;
+}
+
+</style>
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 align="center">Let's play</h1>
+
+        <div class="btn">
+            <h1>
+            <button type="button" class="btn"
+                onClick="roleTheDice()">
+                Roll the Dice
+            </button>
+
+            
+
+            </h1>
+        </div>
+
+
+
+        <div class="dice">
+            <img class="img" src="dice6.png" id="img1">
+        </div>
+
+        <div class="dice">
+            <img class="img" src="dice6.png" id="img2">
+        </div>
+    </div>
+    
+ 
+    
+        <div class="player">
+            <p  id="p1">marks for player 1:</p>
+        
+            <p  id="p2">marks for player 2:</p>
+        </div>
+            
+        
+
+
+    
+<script>
+   
+    var number_1=0;
+    var number_2=0;
+    var player="player1";
+    var player1;
+    var player2;
+    var count=0;
+    var stop_function="false";
+    
+
+    function roleTheDice(){ 
+
+        if(stop_function=="false"){
+
+            var randomNumber1 = Math.floor(Math.random() * 6) + 1;
+            var randomNumber2 = Math.floor(Math.random() * 6) + 1;
+
+            document.getElementById("img1").src="dice" + randomNumber1 + ".png";
+
+            document.getElementById("img2").src="dice" + randomNumber2 + ".png";
+
+            if(count==0){
+                player="player1";
+    
+                if(randomNumber1==randomNumber2){
+                    
+                        if(randomNumber1==1){
+                         
+                                number_1=0;
+                                document.getElementById("p1").innerHTML="marks for player 1: " + number_1;
+                        }
+                        else{
+                                number_1=number_1+randomNumber1+randomNumber2;
+                                document.getElementById("p1").innerHTML="marks for player 1: " + number_1;
+                        }
+                    
+                }
+                    
+                else{
+                        number_1=number_1+randomNumber1+randomNumber2;
+                        document.getElementById("p1").innerHTML = "marks for player 1: " + number_1;
+                }
+    
+                count++;
+            }
+    
+            else{
+                if(randomNumber1==randomNumber2){
+    
+                    if(player=="player1"){
+                        player="player1";
+                    }
+                    else{
+                        player="player2";
+                    }
+                    
+                        if(randomNumber1==1){
+                            
+                            if(player=="player1"){
+                                number_1=0;
+                               
+                                document.getElementById("p1").innerHTML="marks for player 1: " + number_1;
+                            }
+                            else{
+                                number_2=0;
+                                
+                                document.getElementById("p2").innerHTML="marks for player 2: " + number_2;
+                            }
+                            
+                            
+                        }
+                        else{
+        
+                            if(player=="player1"){
+                                number_1=number_1+randomNumber1+randomNumber2;
+                               
+                                document.getElementById("p1").innerHTML="marks for player 1: " + number_1;
+                            }
+                            else{
+                                number_2=number_2+randomNumber1+randomNumber2;
+                              
+                                document.getElementById("p2").innerHTML="marks for player 2: " + number_2;
+                            }
+                            
+                           
+                        }
+                    
+                }
+                    
+                else{
+        
+                    if(player=="player1"){
+                        player="player2";
+                    }
+                    else{
+                        player="player1";
+                    }
+        
+                    if(player=="player1"){
+                        number_1=number_1+randomNumber1+randomNumber2;
+                        document.getElementById("p1").innerHTML = "marks for player 1: " + number_1;
+                      
+                    }
+                    else{
+                        number_2=number_2+randomNumber1+randomNumber2;
+                        document.getElementById("p2").innerHTML = "marks for player 2: " + number_2;
+                        
+                    }  
+            
+                }
+    
+                count++;
+
+        
+            }
+        
+            if(number_1>=100 || number_2>=100){
+                stop_function="true";
+            }
+        }
+
+        else{
+            if(number_1>=number_2){
+                
+                document.querySelector("h1").innerHTML = "congratulations...! player 1 wins the game";
+                document.getElementById("congratulations").src= ".gif";
+               
+            }
+            else{
+                
+                
+                document.querySelector("h1").innerHTML = "congratulations...! player 2 wins the game";
+                document.getElementById("congratulations").src= ".gif";
+                
+            }
+
+        
+
+
+        }
+    }
+        
+
+    
+        
+  
+
+    
+</script>
+</body>
+</html>
